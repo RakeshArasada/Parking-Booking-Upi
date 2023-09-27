@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+button{
+  float: right;
+}
+.margin-success-button-left{
+  margin-left:4px;
+}
