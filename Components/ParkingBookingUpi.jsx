@@ -10,13 +10,8 @@ function ParkingBookingUpi() {
   return (
     <div style={{ textAlign: "center" }}>
       <h1>{currentPage === "parking" ? "Parking List" : currentPage === "bookedSlots" ? "Booked Slots List" : "UPI Payment List"}</h1>
-      {currentPage === "parking" ? (
-        <ParkingList navigateTo={handleNavigateTo} />
-      ) : currentPage === "bookedSlots" ? (
-        <BookedSlots navigateTo={handleNavigateTo} />
-      ) : (
-        <PaymentList navigateTo={handleNavigateTo} />
-      )}
+      {currentPage === "parking" ? (<ParkingList navigateTo={handleNavigateTo} />) : currentPage === "bookedSlots" ? (<BookedSlots navigateTo={handleNavigateTo} />) : (<PaymentList navigateTo={handleNavigateTo} />
+)}
     </div>
   );
 }
@@ -56,26 +51,30 @@ function ParkingList({ navigateTo }) {
         <table className="table table-striped">
         <thead className="thead-dark">
             <tr>
+            <th className="bg-black text-white">Id</th>
             <th className="bg-black text-white">Name</th>
-              <th className="bg-black text-white">Place</th>
               <th className="bg-black text-white">Length</th>
-              <th className="bg-black text-white">Lat,Long</th>
+              <th className="bg-black text-white">Lat</th>
+              <th className="bg-black text-white">Long</th>
               <th className="bg-black text-white">Occupied Slots</th>
               <th className="bg-black text-white">Available Slots</th>
-              <th className="bg-black text-white">Images</th>
+              <th className="bg-black text-white">Images-1</th>
+              <th className="bg-black text-white">Images-2</th>
               {/* Add more table headers as needed */}
             </tr>
           </thead>
           <tbody>
             {Object.keys(parkingData).map((id) => (
               <tr key={id}>
+              <td>{id}</td>
               <td>{parkingData[id].name}</td>
-              <td>{parkingData[id].place}</td>
               <td>{parkingData[id].length}</td>
-              <td>{parkingData[id].latandlong}</td>
-              <td>{parkingData[id].occupiedslots}</td>
-              <td>{parkingData[id].availableslots}</td>
-              <td>{parkingData[id].imageurl}</td>
+              <td>{parkingData[id].latitude}</td>
+              <td>{parkingData[id].longitude}</td>
+              <td>{parkingData[id].occupiedSlots}</td>
+              <td>{parkingData[id].availableSlots}</td>
+              <td>{parkingData[id].imageUrl1}</td>
+              <td>{parkingData[id].imageUrl2}</td>
                 {/* Add more table cells as needed */}
               </tr>
             ))}
@@ -123,6 +122,7 @@ function BookedSlots({ navigateTo }) {
             <tr>
               <th className="bg-black text-white">Slot ID</th>
               <th className="bg-black text-white">User ID</th>
+              <th className="bg-black text-white">Place ID</th>
               <th className="bg-black text-white">Amount Checked In</th>
               <th className="bg-black text-white">Amount Checked Out</th>
               {/* Add more table headers as needed */}
@@ -133,7 +133,8 @@ function BookedSlots({ navigateTo }) {
               <tr key={slotId}>
                 <td>{slotId}</td>
                 <td>{bookedSlots[slotId].parkingId}</td>
-                <td>{bookedSlots[slotId].userId}</td>
+                <td>{bookedSlots[slotId].userID}</td>
+                <td>{bookedSlots[slotId].PlaceID}</td>
                 <td>{bookedSlots[slotId].checkedIn}</td>
                 <td>{bookedSlots[slotId].checkedOut}</td>
                 {/* Add more table cells for other booked slot data */}
@@ -181,10 +182,9 @@ function PaymentList({ navigateTo }) {
         <table className="table table-striped">
           <thead className="thead-dark">
             <tr>
-              <th className="bg-black text-white">Transaction ID</th>
-              <th className="bg-black text-white">User ID</th>
-              <th className="bg-black text-white">Amount</th>
-              <th className="bg-black text-white">Timestamp</th>
+              <th className="bg-black text-white">ID</th>
+              <th className="bg-black text-white">Upi ID</th>
+              <th className="bg-black text-white">Upi Name</th>
               {/* Add more table headers as needed */}
             </tr>
           </thead>
@@ -192,9 +192,8 @@ function PaymentList({ navigateTo }) {
             {Object.keys(upiPayments).map((transactionId) => (
               <tr key={transactionId}>
                 <td>{transactionId}</td>
-                <td>{upiPayments[transactionId].upid}</td>
-                <td>{upiPayments[transactionId].amount}</td>
-                <td>{upiPayments[transactionId].timestamp}</td>
+                <td>{upiPayments[transactionId].upiId}</td>
+                <td>{upiPayments[transactionId].upiName}</td>
                 {/* Add more table cells for other UPI payment data */}
               </tr>
             ))}
