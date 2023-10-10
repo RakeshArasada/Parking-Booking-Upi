@@ -7,3 +7,16 @@ button{
 .margin-success-button-left{
   margin-left:4px;
 }
+
+.custom-pagination .page-item.active .page-link {
+  background-color: #198754;
+  border-color: #198754;
+}
+.search-bar-style{
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 80%;
+  font-size: 16px;
+}
